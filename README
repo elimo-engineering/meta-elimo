@@ -1,0 +1,37 @@
+This README file contains information on the contents of the meta-elimo layer.
+
+Please see the corresponding sections below for details.
+
+Dependencies
+============
+
+  URI: git@github.com:linux-sunxi/meta-sunxi.git
+  branch: kirkstone
+
+Patches
+=======
+
+Please submit any patches against the meta-elimo layer to the github repo as a PR.
+
+Maintainer: Matteo Scordino <matteo@elimo.io>
+
+Table of Contents
+=================
+
+  I. Adding the meta-elimo layer to your build
+ II. Misc
+
+
+I. Adding the meta-elimo layer to your build
+=================================================
+
+Add the meta-sunxi layer first, then un 'bitbake-layers add-layer meta-elimo'
+
+II. Misc
+========
+
+This is the BSP layer for the Elimo Initium EVK, based on the Elimo Impetus SoM.
+
+You can use this as:
+- a layer to build an image for the Initum EVK itself
+- a template to create a BSP layer for your custom board based on the Elimo Impetus SoM
