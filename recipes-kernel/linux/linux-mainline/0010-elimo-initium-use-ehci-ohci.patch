@@ -1,0 +1,29 @@
+From b95a3a62ac66133597c6f4d0bddad2932396015e Mon Sep 17 00:00:00 2001
+From: Matteo Scordino <matteo.scordino@gmail.com>
+Date: Wed, 1 Feb 2023 15:30:48 +0000
+Subject: [PATCH] elimo-initium-use-ehci-ohci
+
+---
+ arch/arm/boot/dts/sun8i-s3-elimo-initium.dts | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun8i-s3-elimo-initium.dts b/arch/arm/boot/dts/sun8i-s3-elimo-initium.dts
+index d20e87ce0..16b145472 100644
+--- a/arch/arm/boot/dts/sun8i-s3-elimo-initium.dts
++++ b/arch/arm/boot/dts/sun8i-s3-elimo-initium.dts
+@@ -105,3 +105,15 @@ tcon0_out_lcd: endpoint@0 {
+ 		remote-endpoint = <&panel_input>;
+ 	};
+ };
++
++&ehci0 {
++    phys = <&usbphy 0>;
++    phy-names = "usb";
++    status = "okay";
++};
++
++&ohci0 {
++    phys = <&usbphy 0>;
++    phy-names = "usb";
++    status = "okay";
++};

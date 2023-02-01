@@ -1,0 +1,28 @@
+From 312588a01498dca44506edf4854314272a50e8f2 Mon Sep 17 00:00:00 2001
+From: Matteo Scordino <matteo.scordino@gmail.com>
+Date: Wed, 1 Feb 2023 15:29:33 +0000
+Subject: [PATCH] elimo-initium-enable-audio-codec
+
+---
+ arch/arm/boot/dts/sun8i-s3-elimo-initium.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun8i-s3-elimo-initium.dts b/arch/arm/boot/dts/sun8i-s3-elimo-initium.dts
+index 039677c2c..ffe0ba120 100644
+--- a/arch/arm/boot/dts/sun8i-s3-elimo-initium.dts
++++ b/arch/arm/boot/dts/sun8i-s3-elimo-initium.dts
+@@ -27,3 +27,14 @@ &emac {
+ 	phy-mode = "mii";
+ 	status = "okay";
+ };
++
++&codec {
++    allwinner,audio-routing =
++        "Speaker", "LINEOUT",
++        "LINEIN", "Line In";
++    status = "okay";
++};
++
++&codec_analog {
++	status = "okay";
++};

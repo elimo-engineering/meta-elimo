@@ -1,0 +1,30 @@
+From df276b15d434fd1a0a0f240f51dabb71636b9c95 Mon Sep 17 00:00:00 2001
+From: Matteo Scordino <matteo.scordino@gmail.com>
+Date: Wed, 1 Feb 2023 15:29:51 +0000
+Subject: [PATCH] v3s-pwm-pins
+
+---
+ arch/arm/boot/dts/sun8i-v3s.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
+index d3eb41c29..4fb85f40a 100644
+--- a/arch/arm/boot/dts/sun8i-v3s.dtsi
++++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
+@@ -457,6 +457,16 @@ mmc1_pins: mmc1-pins {
+ 				bias-pull-up;
+ 			};
+ 
++			pwm0_pins: pwm0-pins {
++				pins = "PB4";
++				function = "pwm0";
++			};
++
++			pwm1_pins: pwm1-pins {
++				pins = "PB5";
++				function = "pwm1";
++			};
++
+ 			spi0_pins: spi0-pins {
+ 				pins = "PC0", "PC1", "PC2", "PC3";
+ 				function = "spi0";

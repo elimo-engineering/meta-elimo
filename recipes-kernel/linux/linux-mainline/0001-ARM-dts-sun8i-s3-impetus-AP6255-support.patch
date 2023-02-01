@@ -1,0 +1,59 @@
+From 6672dd10f5e753f36e6abaabbd905e9f51c8b883 Mon Sep 17 00:00:00 2001
+From: Matteo Scordino <matteo.scordino@gmail.com>
+Date: Wed, 1 Feb 2023 15:27:50 +0000
+Subject: [PATCH] ARM-dts-sun8i-s3-impetus-AP6255-support
+
+---
+ arch/arm/boot/dts/sun8i-s3-elimo-impetus.dtsi | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun8i-s3-elimo-impetus.dtsi b/arch/arm/boot/dts/sun8i-s3-elimo-impetus.dtsi
+index 052b010a5..017145f4b 100644
+--- a/arch/arm/boot/dts/sun8i-s3-elimo-impetus.dtsi
++++ b/arch/arm/boot/dts/sun8i-s3-elimo-impetus.dtsi
+@@ -18,6 +18,14 @@ aliases {
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
++ 
++	wifi_pwrseq: mmc1_pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&pio 4 19 GPIO_ACTIVE_LOW>; /* PE19 */
++		clocks = <&rtc 1>;
++		//clocks = <&osc32k>;
++		clock-names = "ext_clock";
++	};   
+ };
+ 
+ &mmc0 {
+@@ -27,6 +35,25 @@ &mmc0 {
+ 	status = "okay";
+ };
+ 
++&mmc1 {
++	vmmc-supply = <&reg_vcc3v3>;
++	vqmmc-supply = <&reg_vcc3v3>;
++	mmc-pwrseq = <&wifi_pwrseq>;
++	bus-width = <4>;
++	non-removable;
++	wakeup-source;
++	keep-power-in-suspend;
++	status = "okay";
++
++	brcmf: wifi@1 {
++		reg = <1>;
++		compatible = "brcm,bcm4329-fmac";
++		interrupt-parent = <&pio>;
++		interrupts = <1 11 IRQ_TYPE_LEVEL_HIGH>; /* PB11 / EINT11 */
++		interrupt-names = "host-wake";
++	};
++};
++
+ &uart0 {
+ 	pinctrl-0 = <&uart0_pb_pins>;
+ 	pinctrl-names = "default";
+@@ -42,3 +69,4 @@ &usbphy {
+ 	usb0_id_det-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>;
+ 	status = "okay";
+ };
++
